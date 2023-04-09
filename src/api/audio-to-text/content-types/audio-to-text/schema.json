@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audio_to_texts",
+  "info": {
+    "singularName": "audio-to-text",
+    "pluralName": "audio-to-texts",
+    "displayName": "Audio to Text"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "audio": {
+      "allowedTypes": [
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false,
+      "private": true
+    },
+    "text": {
+      "type": "text"
+    }
+  }
+}

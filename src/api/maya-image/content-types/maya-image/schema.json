@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "maya_images",
+  "info": {
+    "singularName": "maya-image",
+    "pluralName": "maya-images",
+    "displayName": "Maya images",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "prompt": {
+      "type": "text",
+      "required": true
+    },
+    "query": {
+      "type": "text",
+      "required": false
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
