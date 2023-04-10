@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "marvin_chats",
+  "info": {
+    "singularName": "marvin-chat",
+    "pluralName": "marvin-chats",
+    "displayName": "Marvin chat",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subject": {
+      "type": "text"
+    },
+    "chatlog": {
+      "type": "json"
+    },
+    "marvin_bot": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::marvin-bot.marvin-bot"
+    },
+    "model": {
+      "type": "enumeration",
+      "enum": [
+        "gpt-3.5-turbo",
+        "gpt-4"
+      ],
+      "default": "gpt-3.5-turbo",
+      "private": true
+    },
+    "identity": {
+      "type": "text",
+      "private": true
+    }
+  }
+}
