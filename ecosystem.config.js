@@ -18,7 +18,11 @@ module.exports = {
       ref: 'origin/main',
       repo: 'git@github.com:JeffreyArts/jeffa.git',
       path: process.env.DEPLOYMENT_PATH,
-      'post-deploy': 'yarn install && yarn build && pm2 reload ecosystem.config.js --env production'
+      'post-deploy': 'yarn install && yarn build && pm2 reload ecosystem.config.js --env production',
+      env: {
+        NODE_ENV: 'production',
+        PATH: `/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/${process.env.DEPLOYMENT_USER}/.yarn/bin`
+      }
     }
   }
 };
