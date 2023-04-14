@@ -31,12 +31,3 @@ module.exports = (config, { strapi }) => {
     return next()
   };
 };
-
-// module.exports = () => {
-//   return {
-//     initialize: function() {
-//       // Attach the OpenAI instance to the Strapi context
-//       strapi.services.openai = openAI;
-//     },
-//   };
-// };
