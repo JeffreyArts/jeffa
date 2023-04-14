@@ -3,7 +3,7 @@ require('dotenv').config();
 module.exports = {
   apps: [{
     name: 'jeffa-api',
-    script: 'nvm use 16 && yarn',
+    script: 'npm',
     args: 'start',
     cwd: process.env.DEPLOYMENT_CWD,
     env: {
@@ -18,11 +18,7 @@ module.exports = {
       ref: 'origin/main',
       repo: 'git@github.com:JeffreyArts/jeffa.git',
       path: process.env.DEPLOYMENT_PATH,
-      'post-deploy': 'yarn install && yarn build && pm2 reload ecosystem.config.js --env production',
-      env: {
-        NODE_ENV: 'production',
-        PATH: `/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/${process.env.DEPLOYMENT_USER}/.yarn/bin`
-      }
+      'post-deploy': 'npm install && npm build && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
