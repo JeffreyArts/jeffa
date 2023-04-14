@@ -5,6 +5,7 @@
  */
 
 const axios = require('axios');
+const FormData = require('form-data');
 const fs = require('fs/promises');
 const { createCoreController } = require('@strapi/strapi').factories;
 

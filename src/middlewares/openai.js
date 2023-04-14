@@ -10,8 +10,8 @@ And that you have installed the openai package
 yarn add openai
 */
 
+const FormData = require('form-data');
 const { Configuration, OpenAIApi } = require('openai');
-
 class CustomFormData extends FormData {
   getHeaders() {
     return {};
