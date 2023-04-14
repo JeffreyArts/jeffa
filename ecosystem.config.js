@@ -18,7 +18,7 @@ module.exports = {
       ref: 'origin/main',
       repo: 'git@github.com:JeffreyArts/jeffa.git',
       path: process.env.DEPLOYMENT_PATH,
-      'post-deploy': 'nvm use 16 yarn install && yarn build && pm2 reload ecosystem.config.js --env production'
+      'post-deploy': 'yarn install && yarn build && pm2 reload ecosystem.config.js --env production'
     }
   }
 };
