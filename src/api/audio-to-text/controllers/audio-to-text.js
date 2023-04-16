@@ -7,6 +7,8 @@
 const axios = require('axios');
 const FormData = require('form-data');
 const fs = require('fs/promises');
+const stream = require('stream');
+const Blob = require('blob-polyfill').Blob;
 const { createCoreController } = require('@strapi/strapi').factories;
 
 
@@ -34,8 +36,12 @@ module.exports = createCoreController('api::audio-to-text.audio-to-text', ({ str
         const formData = new FormData()
         const fileBuffer = await fs.readFile(audio.path);
         const blob = new Blob([fileBuffer] );
-        formData.append("file", blob, audio.name)
+        const bufferStream = new stream.PassThrough();
+        bufferStream.end(fileBuffer);
+
+        formData.append("file", bufferStream, audio.name)
         formData.append("model", "whisper-1")
+
         const completion = await axios.post( `https://api.openai.com/v1/audio/transcriptions`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",

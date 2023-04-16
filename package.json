@@ -17,6 +17,7 @@
     "@strapi/plugin-users-permissions": "4.8.2",
     "@strapi/strapi": "4.8.2",
     "better-sqlite3": "8.0.1",
+    "blob-polyfill": "^7.0.20220408",
     "change-case": "^4.1.2",
     "file-api": "^0.10.4",
     "openai": "^3.2.1",
