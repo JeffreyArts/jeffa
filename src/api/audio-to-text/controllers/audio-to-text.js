@@ -15,8 +15,13 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::audio-to-text.audio-to-text', ({ strapi }) => ({
   async create(ctx) {
     const { audio } = ctx.request.files;
+    const options = {}
     if (!audio) {
         return { data: { error: "Missing audio file" }, meta: ctx.request.body.meta };
+    }
+
+    if (ctx.request.body.language) {
+        options.language = ctx.request.body.language
     }
 
     
@@ -41,6 +46,9 @@ module.exports = createCoreController('api::audio-to-text.audio-to-text', ({ str
 
         formData.append("file", bufferStream, audio.name)
         formData.append("model", "whisper-1")
+        for (let key in options) {
+            formData.append(key, options[key])
+        }
 
         const completion = await axios.post( `https://api.openai.com/v1/audio/transcriptions`, formData, {
             headers: {
@@ -49,7 +57,7 @@ module.exports = createCoreController('api::audio-to-text.audio-to-text', ({ str
             },
         })
 
-        // Create the audio-to-text
+        // Store audio file + completion in database
         const result = await strapi.entityService.create('api::audio-to-text.audio-to-text', { data: {
             audio: uploadedFile[0].id,
             text: completion.data.text,
