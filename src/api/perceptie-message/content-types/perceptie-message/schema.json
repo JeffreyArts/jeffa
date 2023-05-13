@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "perceptie_messages",
+  "info": {
+    "singularName": "perceptie-message",
+    "pluralName": "perceptie-messages",
+    "displayName": "Perceptie message"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    }
+  }
+}
