@@ -5,7 +5,6 @@ module.exports = {
     name: "jeffa-api",
     script: "yarn",
     args: "start",
-    cwd: process.env.DEPLOYMENT_PATH,
     env: {
       NODE_ENV: "production"
     }
