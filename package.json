@@ -15,6 +15,7 @@
     "@strapi/plugin-color-picker": "^4.9.0",
     "@strapi/plugin-i18n": "4.8.2",
     "@strapi/plugin-users-permissions": "4.8.2",
+    "@strapi/provider-email-mailgun": "^4.10.5",
     "@strapi/strapi": "4.8.2",
     "better-sqlite3": "8.0.1",
     "blob-polyfill": "^7.0.20220408",

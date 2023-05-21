@@ -19,4 +19,18 @@ module.exports = ({ env }) => ({
       ]
     },
   },
+  email: {
+    config: {
+      provider: 'mailgun', // For community providers pass the full package name (e.g. provider: 'strapi-provider-email-mandrill')
+      providerOptions: {
+        key: env('MAILGUN_API_KEY'),
+        domain: env('MAILGUN_DOMAIN'),
+        url: env('MAILGUN_URL', 'https://api.mailgun.net'),
+      },
+      settings: {
+        defaultFrom: env('MAILGUN_FROM'),
+        defaultReplyTo: env('MAILGUN_REPLYTO')
+      },
+    },
+  },
 });
