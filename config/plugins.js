@@ -3,7 +3,7 @@ module.exports = ({ env }) => ({
     "enabled": true,
     "config": {
       "IOServerOptions" :{
-        "cors": { "origin": env('APP_ORIGIN', 'http://localhost:3000'), "methods": ["GET"] },
+        "cors": { "origin": env('APP_ORIGIN', 'http://localhost:3000'), "methods": ["GET", "POST", "DELETE", "PUT"] },
       },
       "contentTypes": {
         // "message": "*",
