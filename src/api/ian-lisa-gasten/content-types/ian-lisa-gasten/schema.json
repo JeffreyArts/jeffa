@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ian_lisa_gastens",
+  "info": {
+    "singularName": "ian-lisa-gasten",
+    "pluralName": "ian-lisa-gastens",
+    "displayName": "Ian & Lisa  - Gasten",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Naam": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "unique": true,
+      "default": "https://www.05-07-2024.nl/uitnodiging/"
+    },
+    "UitnodigingType": {
+      "type": "enumeration",
+      "enum": [
+        "Hele dag",
+        "Ceremonie & avond",
+        "Alleen avond"
+      ]
+    },
+    "AantalPersonen": {
+      "type": "integer"
+    },
+    "persoonlijkBericht": {
+      "type": "text"
+    }
+  }
+}
