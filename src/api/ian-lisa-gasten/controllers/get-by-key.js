@@ -4,7 +4,6 @@ module.exports = async (ctx) => {
     }
 
     const { key } = ctx.params;
-    console.log("Key:", key)
     
     try {
         
