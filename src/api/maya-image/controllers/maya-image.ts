@@ -25,7 +25,7 @@ module.exports = factories.createCoreController('api::maya-image.maya-image', ({
     try {
       if (!prompt) {
         // Generate promt from query with openAI
-        const o = await openAI.createChatCompletion({
+        const data = await openAI.chat.completions.create({
           model: "gpt-3.5-turbo",
           messages: [
             {
@@ -38,19 +38,19 @@ module.exports = factories.createCoreController('api::maya-image.maya-image', ({
             },
           ],
         })
-        prompt = `${o.data.choices[0].message.content}, style of ancient maya symbol, positive`
+        prompt = `${data.choices[0].message.content}, style of ancient maya symbol, positive`
         ctx.request.body.data.prompt = prompt
       }
 
       // Create image with OpenAI
-      const response = await openAI.createImage({
+      const response = await openAI.images.generate({
         prompt: prompt,
         n: 1,
         size: '1024x1024',
       });
-
+      console.log("response", response)
       // Download the image and save it to a temporary file
-      const imageUrl = response.data.data[0].url;
+      const imageUrl = response.data[0].url;
       const imagePath = join(tmpdir(), 'tempImageFile');
       const writer = createWriteStream(imagePath);
       const { data: imageStream } = await axios({ url: imageUrl, method: 'GET', responseType: 'stream' });

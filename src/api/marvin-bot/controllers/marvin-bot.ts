@@ -50,7 +50,7 @@ module.exports = factories.createCoreController('api::marvin-bot.marvin-bot', ({
 
 
     // Generate promt from query with openAI
-    const o = await openAI.createChatCompletion({
+    const data = await openAI.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [{
         role: "user",
@@ -59,7 +59,7 @@ module.exports = factories.createCoreController('api::marvin-bot.marvin-bot', ({
                 Verzin naast karakter eigenschappen ook externe eigenschappen zoals familie, vrienden, hobby's, werk, leeftijd, etc.`,
       }, ],
     })
-    // const o = await openAI.createChatCompletion({
+    // const o = await openAI.chat.completions.create({
     //     model: "gpt-3.5-turbo",
     //     messages: [
     //         {
@@ -68,7 +68,7 @@ module.exports = factories.createCoreController('api::marvin-bot.marvin-bot', ({
     //         },
     //     ],
     // })
-    const identity = `${o.data.choices[0].message.content}`
+    const identity = `${data.choices[0].message.content}`
 
     
     ctx.request.body.data.identity = identity
@@ -77,26 +77,26 @@ module.exports = factories.createCoreController('api::marvin-bot.marvin-bot', ({
     let color = "grey"
     if (accent_color) {
 
-        const c = await openAI.createChatCompletion({
+        const data2 = await openAI.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [{
                 role: "user",
                 content: `Your job is to name the following hex color: ${accent_color}. Only output the name, nothing more, nothing less.`,
             }, ],
         })
-        color = `${c.data.choices[0].message.content}`
+        color = `${data2.choices[0].message.content}`
     }
 
     let response = undefined
     try {
       // Create image with OpenAI
-      response = await openAI.createImage({
+      response = await openAI.images.generate({
         prompt: `avatar of a ${role}, face only, background color: ${color}, 3D render`,
         n: 1,
         size: '512x512',
       });
     } catch (error) {
-      response = await openAI.createImage({
+      response = await openAI.images.generate({
         prompt: `avatar for an unknown profile, face only, background color: ${color}, 3D render`,
         n: 1,
         size: '512x512',

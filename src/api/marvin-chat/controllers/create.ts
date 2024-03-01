@@ -36,7 +36,7 @@ const create = async (ctx) => {
         
         // Make bot open the conversation
         const model = "gpt-3.5-turbo"
-        const o = await openAI.createChatCompletion({
+        const data = await openAI.chat.completions.create({
             model: model,
             messages: [
                 {
@@ -50,9 +50,9 @@ const create = async (ctx) => {
             ],
         })
         
-        const firstMessage = o.data.choices[0].message.content
+        const firstMessage = data.choices[0].message.content
         
-        const o2 = await openAI.createChatCompletion({
+        const data2 = await openAI.chat.completions.create({
             model: model,
             messages: [
                 {
@@ -68,7 +68,7 @@ const create = async (ctx) => {
                 content: firstMessage,
             }
         ]
-        const subject = `${o2.data.choices[0].message.content}`
+        const subject = `${data2.choices[0].message.content}`
 
         
         ctx.request.body.data.subject = subject

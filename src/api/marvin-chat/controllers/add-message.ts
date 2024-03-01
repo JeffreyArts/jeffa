@@ -74,12 +74,12 @@ const addMessage = async (ctx) => {
         
         // Make bot open the conversation
         
-        const o = await openAI.createChatCompletion({
+        const data = await openAI.chat.completions.create({
             model: chat.model,
             messages: chat.chatlog,
         })
         
-        const newAssistantMessage = o.data.choices[0].message.content
+        const newAssistantMessage = data.choices[0].message.content
         
         
         chat.chatlog.push({
@@ -88,7 +88,6 @@ const addMessage = async (ctx) => {
         })
         chat.chatlog.shift()
         console.log("newAssistantMessage", newAssistantMessage, id, chat)
-        // const subject = `${o2.data.choices[0].message.content}`
 
         
         // ctx.request.body.data.subject = subject
