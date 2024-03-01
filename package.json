@@ -1,11 +1,12 @@
 {
   "name": "jeff-api",
   "private": true,
-  "version": "0.1.0",
+  "version": "2.0.0",
   "description": "API for various projects by Jeffrey Arts",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
+    "deploy": "pm2 deploy ecosystem.config.js production",
     "build": "strapi build",
     "strapi": "strapi"
   },
