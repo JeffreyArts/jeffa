@@ -10,20 +10,14 @@ And that you have installed the openai package
 yarn add openai
 */
 
-const FormData = require('form-data');
-const { Configuration, OpenAIApi } = require('openai');
-class CustomFormData extends FormData {
-  getHeaders() {
-    return {};
-  }
-}
+import FormData from 'form-data'
+import OpenAI from 'openai'
 
-const configuration = new Configuration({
+
+
+const openAI = new OpenAI({
   apiKey: process.env.OPENAI_KEY,
-  formDataCtor: CustomFormData,
 });
-
-const openAI = new OpenAIApi(configuration);
 
 module.exports = (config, { strapi }) => {
   return async (ctx, next) => {

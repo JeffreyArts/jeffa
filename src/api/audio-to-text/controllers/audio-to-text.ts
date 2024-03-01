@@ -4,18 +4,21 @@
  * audio-to-text controller
  */
 
-const axios = require('axios');
-const FormData = require('form-data');
-const fs = require('fs/promises');
-const stream = require('stream');
+import axios from 'axios'
+import FormData from 'form-data'
+import fs from 'fs/promises'
+import stream from 'stream'
 // const Blob = require('blob-polyfill').Blob;
-const { createCoreController } = require('@strapi/strapi').factories;
+import { factories } from '@strapi/strapi'
+// const { createCoreController } = require('@strapi/strapi').factories;
 
 
-module.exports = createCoreController('api::audio-to-text.audio-to-text', ({ strapi }) => ({
+module.exports = factories.createCoreController('api::audio-to-text.audio-to-text', ({ strapi }) => ({
   async create(ctx) {
     const { audio } = ctx.request.files;
-    const options = {}
+    const options = {} as {
+        language?: string
+    }
     if (!audio) {
         return { data: { error: "Missing audio file" }, meta: ctx.request.body.meta };
     }

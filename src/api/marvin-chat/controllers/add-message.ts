@@ -7,8 +7,9 @@ Sample input:
 }
 *****************************/
 
+import _ from "lodash"
 
-module.exports = async (ctx) => {
+const addMessage = async (ctx) => {
     const openAI = ctx.openAI;
 
     if (!ctx.request.body.data) {
@@ -47,6 +48,18 @@ module.exports = async (ctx) => {
         fields: ['identity', 'model', 'chatlog'],
     })
 
+    if (!_.isArray(chat.chatlog)) {
+        return ctx.badRequest(chat.chatlog, [
+            {
+                messages: [
+                    {
+                        id: 'serverError',
+                        message: `Incorrect datatype chatlog (${typeof chat.chatlog})`,
+                    },
+                ],
+            },
+        ]);
+    }
     chat.chatlog.unshift({
         role: "system",
         content: chat.identity,
@@ -95,4 +108,8 @@ module.exports = async (ctx) => {
         // const result = await strapi.entityService.create('api::marvin-chat.marvin-chat', { data: ctx.request.body.data });
         return { error: error, meta: ctx.request.body.meta };
     }
-  } 
+} 
+
+export default {
+    addMessage
+}

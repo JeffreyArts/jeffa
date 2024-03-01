@@ -4,12 +4,13 @@
  * marvin-chat controller
  */
 
-const axios = require('axios');
-const { createWriteStream, promises: fsPromises } = require('fs');
-const { tmpdir } = require('os');
-const { join } = require('path');
-const {snakeCase} = require("change-case");
-const { createCoreController } = require('@strapi/strapi').factories;
+import axios from 'axios'
+import { createWriteStream } from 'fs'
+import { unlink } from 'fs/promises'
+import { tmpdir } from 'os'
+import { join } from 'path'
+// import {snakeCase} from "change-case"
+import { factories } from '@strapi/strapi'
 
 /*****************************
 Sample input:
@@ -21,7 +22,7 @@ Sample input:
   }
 }
 *****************************/
-module.exports = createCoreController('api::marvin-bot.marvin-bot', ({
+module.exports = factories.createCoreController('api::marvin-bot.marvin-bot', ({
   strapi
 }) => ({
   async create(ctx) {
@@ -36,7 +37,7 @@ module.exports = createCoreController('api::marvin-bot.marvin-bot', ({
 
 
     // Check if all required fields are present
-    const missingFields = requiredFields.filter(field => !ctx.request.body.data[field]);
+    const missingFields = requiredFields.filter(field => !ctx.request.body.data[field])
     if (missingFields.length > 0) {
       return ctx.badRequest(null, [{
         messages: [{
@@ -125,7 +126,7 @@ module.exports = createCoreController('api::marvin-bot.marvin-bot', ({
     // Upload the image to Strapi
     const fileData = {
       path: imagePath,
-      name: `${snakeCase(`${role} ${name}`)}.jpg`, // choose a suitable name for the image
+      name: `${`${role} ${name}`}.jpg`, // choose a suitable name for the image
       type: 'image/jpeg', // the appropriate MIME type for the image
     };
     const uploadedFile = await strapi.plugins.upload.services.upload.upload({
@@ -134,7 +135,7 @@ module.exports = createCoreController('api::marvin-bot.marvin-bot', ({
     });
 
     // Remove the temporary file
-    await fsPromises.unlink(imagePath);
+    await unlink(imagePath);
 
     // Add the uploaded image to the request body
     ctx.request.body.data.avatar = uploadedFile[0].id;

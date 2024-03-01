@@ -1,12 +1,12 @@
 'use strict';
 
 /**
- * maya-image router
+ * marvin-chat router
  */
 
-const { createCoreRouter } = require('@strapi/strapi').factories;
+import { factories } from '@strapi/strapi'; 
 
-module.exports = createCoreRouter('api::maya-image.maya-image', {
+module.exports = factories.createCoreRouter('api::marvin-bot.marvin-bot', {
   config: {
     find: {},
     findOne: {},
@@ -15,5 +15,5 @@ module.exports = createCoreRouter('api::maya-image.maya-image', {
     },
     update: {},
     delete: {},
-  },
+  }
 });

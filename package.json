@@ -1,36 +1,45 @@
 {
-  "name": "maya-backend",
+  "name": "jeff-api",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "API for various projects by Jeffrey Arts",
   "scripts": {
     "develop": "strapi develop",
-    "deploy": "pm2 deploy ecosystem.config.js production",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "eslint": "^8.10.0",
+    "eslint-plugin-node": "^11.1.0",
+    "typescript": "^4.6.2"
+  },
   "dependencies": {
-    "@strapi/plugin-color-picker": "4.14.5",
-    "@strapi/plugin-i18n": "4.14.5",
-    "@strapi/plugin-users-permissions": "4.14.5",
-    "@strapi/provider-email-mailgun": "^4.10.5",
-    "@strapi/strapi": "4.14.5",
-    "better-sqlite3": "8.0.1",
-    "change-case": "^4.1.2",
+    "@strapi/plugin-cloud": "4.20.1",
+    "@strapi/plugin-color-picker": "^4.20.1",
+    "@strapi/plugin-i18n": "4.20.1",
+    "@strapi/plugin-users-permissions": "4.20.1",
+    "@strapi/provider-email-mailgun": "^4.20.1",
+    "@strapi/strapi": "4.20.1",
+    "better-sqlite3": "8.6.0",
+    "change-case": "^5.4.3",
     "file-api": "^0.10.4",
-    "openai": "^3.2.1",
-    "strapi-plugin-io": "^1.1.4"
+    "openai": "^4.28.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "5.3.4",
+    "styled-components": "5.3.3"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Jeffrey Arts"
   },
   "strapi": {
-    "uuid": "336d97f2-ea8b-431e-bf99-1e96ced7ca2b"
+    "uuid": "94548002-f135-410a-89d1-1ae82282be7e"
   },
   "engines": {
-    "node": ">=14.19.1 <=18.x.x",
+    "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"

@@ -4,9 +4,9 @@
  * audio-to-text router
  */
 
-const { createCoreRouter } = require('@strapi/strapi').factories;
+import { factories } from '@strapi/strapi'; 
 
-module.exports = createCoreRouter('api::audio-to-text.audio-to-text', {
+module.exports = factories.createCoreRouter('api::audio-to-text.audio-to-text', {
     config: {
       find: {},
       findOne: {},

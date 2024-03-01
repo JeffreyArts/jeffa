@@ -8,7 +8,7 @@ Sample input:
 *****************************/
 
 
-module.exports = async (ctx) => {
+const create = async (ctx) => {
     const openAI = ctx.openAI;
 
     const requiredFields = ['marvin_bot'];
@@ -90,4 +90,8 @@ module.exports = async (ctx) => {
         // const result = await strapi.entityService.create('api::marvin-chat.marvin-chat', { data: ctx.request.body.data });
         return { error: error, meta: ctx.request.body.meta };
     }
+  }
+
+  export default {
+    create
   }

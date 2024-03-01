@@ -1,10 +1,11 @@
 'use strict';
 
-const axios = require('axios');
-const { createWriteStream, promises: fsPromises } = require('fs');
-const { tmpdir } = require('os');
-const { join } = require('path');
-const { createCoreController } = require('@strapi/strapi').factories;
+import axios from 'axios'
+import { createWriteStream } from 'fs'
+import { unlink } from 'fs/promises'
+import { tmpdir } from 'os'
+import { join } from 'path'
+import { factories } from '@strapi/strapi'
 
 /*****************************
 Sample input:
@@ -15,7 +16,7 @@ Sample input:
   }
 }
 *****************************/
-module.exports = createCoreController('api::maya-image.maya-image', ({ strapi }) => ({
+module.exports = factories.createCoreController('api::maya-image.maya-image', ({ strapi }) => ({
   async create(ctx) {
     const openAI = ctx.openAI;
 
@@ -73,7 +74,7 @@ module.exports = createCoreController('api::maya-image.maya-image', ({ strapi })
       });
 
       // Remove the temporary file
-      await fsPromises.unlink(imagePath);
+      unlink(imagePath);
 
       // Add the uploaded image to the request body
       ctx.request.body.data.image = uploadedFile[0].id;
